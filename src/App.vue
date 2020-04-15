@@ -1,28 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <todo :caixinhas ="caixinhas"/>
+    <TodoForm :caixinhas ="caixinhas" @alterouTexto="alteraTexto($event)"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Todo from "./components/Todo.vue"
+import TodoForm from "./components/TodoForm.vue"
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Todo,TodoForm
+  }, data: function(){
+    return{
+      caixinhas:[{
+        titulo: "1"
+      }, {
+        titulo: "2"
+      }, {
+        titulo: "3"
+      }]  
+    }
+  }, methods:{
+    alteraTexto: function(event){
+      console.log(event)
+      this.caixinhas[event.caixa].titulo = event.titulo
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
